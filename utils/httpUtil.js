@@ -12,7 +12,7 @@ function http_post(url, data, cb) {
 }
 
 function http_request(url, method, data, cb) {
-
+  var header = app.globalData.header;
   var param = new Object();
 
   if (data != null) {
@@ -26,9 +26,7 @@ function http_request(url, method, data, cb) {
     url: url,
     data: param,
     method: method,
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
+    header: header,
     success: function (res) {
       console.log("http request url: " + url);
       console.log("http request result: " + JSON.stringify(res.data));
@@ -49,7 +47,6 @@ function http_request(url, method, data, cb) {
         typeof cb == "function" && cb(res)
       }
     },
-
     fail: function (res) {
       console.log("app httpRequest fail: " + JSON.stringify(res.errMsg));
       wx.showToast({ title: '网络失败', icon: 'fail', duration: 2000 })

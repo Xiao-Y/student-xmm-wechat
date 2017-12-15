@@ -33,7 +33,7 @@
       <text>最近新品</text>
     </view>
     <view class="newest-box">
-      <view class="newest-list" wx:for-index="index" data-index="{{index}}" wx:for="{{NewList}}" wx:for-item="item" wx:key="" bindtap="getCommodityById">
+      <view class="newest-list" data-index="{{item.id}}" wx:for="{{NewList}}" wx:for-item="item" wx:key="{{item.id}}" bindtap="getCommodityById">
         <image src="{{item.img}}"></image>
         <view class="newest-text">
           <text>{{item.commodityName}}</text>
@@ -47,7 +47,7 @@
       <text>最热新品</text>
     </view>
     <view class="newest-box">
-      <view class="newest-list" wx:for-index="index" data-index="{{index}}" wx:for="{{HotList}}" wx:for-item="item" wx:key="" bindtap="getCommodityById">
+      <view class="newest-list" data-index="{{item.id}}" wx:for="{{HotList}}" wx:for-item="item" wx:key="{{item.id}}" bindtap="getCommodityById">
         <image src="{{item.img}}"></image>
         <view class="newest-text">
           <text>{{item.commodityName}}</text>

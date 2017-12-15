@@ -1,7 +1,9 @@
 var app = getApp();
 const URL = require("../../utils/urlUtil");
 const httpUtil = require("../../utils/httpUtil");
-
+/**
+ * 获取最新商品
+ */
 var getCommodityNewList = function (that) {
   httpUtil.http_get(URL.SERVER.home_getCommodityNewList, null, function (res) {
     if (!res.data.error || res.data.length > 0) {
@@ -13,7 +15,9 @@ var getCommodityNewList = function (that) {
     }
   });
 }
-
+/**
+ * 获取最热商品
+ */
 var getCommodityHotList = function (that) {
   httpUtil.http_get(URL.SERVER.home_getCommodityHotList, null, function (res) {
     if (!res.data.error || res.data.length > 0) {
@@ -47,7 +51,7 @@ Page({
     getCommodityHotList(this);
   }, 
   getCommodityById :function(e){
-    var id = this.data.NewList[e.currentTarget.dataset.index].id;
+    var id = e.currentTarget.dataset.index;
     var url = "../component/details/details?id=" + id;
     //tipsUtil.showConfirm(id);
     wx.navigateTo({

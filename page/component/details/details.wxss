@@ -99,14 +99,17 @@
 }
 .goods-operation-num{
     width: 160rpx;
+    font-size: 35rpx;
 }
 .goods-operation-add{
     width: 80rpx;
     margin-right: 30rpx;
+    font-size: 44rpx;
 }
 .goods-to-cart{
     width: 210rpx;
     padding-right: 75rpx;
+    font-size: 35rpx;
 }
 .goods-cart-img{
     position: absolute;

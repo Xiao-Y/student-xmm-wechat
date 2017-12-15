@@ -26,7 +26,7 @@
 }
 .cart-list .cart-pro-name{
     display: inline-block;
-    width: 300rpx;
+    width: 210rpx;
     height: 105rpx;
     line-height: 50rpx;
     overflow: hidden;
@@ -92,12 +92,12 @@
     top: 25rpx;
     width: 45rpx;
     height: 45rpx;
-    background-image: url(/image/icon3.png);
+    /* background-image: url(/image/icon3.png); */
     background-size: 100%;
 }
 .cart-toatl-price{
     float: right;
-    width: 120rpx;
+    width: 220rpx;
 }
 
 .cart-no-data{
