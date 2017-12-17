@@ -30,7 +30,7 @@
       "pagePath": "page/component/category/category",
       "iconPath": "image/22.png",
       "selectedIconPath": "image/21.png",
-      "text": "分类"
+      "text": "商品列表"
     }, {
       "pagePath": "page/component/cart/cart",
       "iconPath": "image/32.png",

@@ -1,36 +1,28 @@
-Page({
-    data: {
-        category: [
-            {name:'果味',id:'guowei'},
-            {name:'蔬菜',id:'shucai'},
-            {name:'炒货',id:'chaohuo'},
-            {name:'点心',id:'dianxin'},
-            {name:'粗茶',id:'cucha'},
-            {name:'淡饭',id:'danfan'}
-        ],
-        detail:[],
-        curIndex: 0,
-        isScroll: false,
-        toView: 'guowei'
-    },
-    onReady(){
-        var self = this;
-        wx.request({
-            url:'http://www.gdfengshuo.com/api/wx/cate-detail.txt',
-            success(res){
-                console.log(res.data)
-                self.setData({
-                    detail : res.data.result
-                })
-            }
-        });
-        
-    },
-    switchTab(e){
-        this.setData({
-            toView : e.target.dataset.id,
-            curIndex : e.target.dataset.index
-        })
+var app = getApp();
+const URL = require("../../../utils/urlUtil");
+const httpUtil = require("../../../utils/httpUtil");
+/**
+ * 获取最新商品
+ */
+var getCommodityNewList = function (that) {
+  httpUtil.http_get(URL.SERVER.home_getCommodityNewList, null, function (res) {
+    if (!res.data.error || res.data.length > 0) {
+      // var data = JSON.parse(res.data.data);
+      that.setData({
+        NewList: res.data,
+        hidden: true
+      });
     }
-    
+  });
+}
+Page({
+  onLoad: function (options) {
+    getCommodityNewList(this);
+  },
+  // bindscrolltolower: function () {
+  //   getCommodityNewList(this);
+  // },
+  onPullDownRefresh: function () {
+    getCommodityNewList(this);
+  }
 })
