@@ -1,0 +1,9 @@
+<template name="product_item_cell">
+  <image src="{{img}}"></image>
+  <view class="newest-text">
+    <text>{{commodityName}}</text>
+  </view>
+  <view class="newest-text">
+    <text>¥{{unitPrice}}/{{spec}}</text>
+  </view>
+</template>

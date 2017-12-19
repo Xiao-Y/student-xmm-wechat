@@ -1,7 +1,7 @@
 const md5 = require("md5");
 const tipUtil = require("tipsUtil");
+const util = require("util");
 var app = getApp();
-
 
 function http_get(url, data, cb) {
   http_request(url, "GET", data, cb);
@@ -19,6 +19,7 @@ function http_request(url, method, data, cb) {
     param = data;
   }
 
+  param.intervalTime = util.getNowFormatDate();
   param.rd_session = app.getSession();
   param.token = app.getToken();
 

@@ -1,15 +1,24 @@
+<import src="../../templates/product_template.wxml" />
 <view class="main">
-  <view class="newest">
-    <view class="newest-box">
-      <view class="newest-list" data-index="{{item.id}}" wx:for="{{NewList}}" wx:for-item="item" wx:key="{{item.id}}" bindtap="getCommodityById">
-        <image src="{{item.img}}"></image>
-        <view class="newest-text">
-          <text>{{item.commodityName}}</text>
-        </view>
-        <view class="newest-text">
-          <text>¥{{item.unitPrice}}/{{item.spec}}</text>
+  <scroll-view style="height: 100%" lower-threshold="100px" scroll-top="{{scrollTop}}" scroll-y="true" bindscrolltolower="bindDownLoad" bindscroll="scroll">
+    <view class="newest">
+      <view class="newest-title">
+        <text>全部商品</text>
+      </view>
+      <view class="newest-box">
+        <view class="newest-list" data-index="{{item.id}}" wx:for="{{shopList}}" wx:for-item="item" wx:key="{{item.id}}" bindtap="getCommodityById">
+          <template is="product_item_cell" data="{{...item}}" />
         </view>
       </view>
     </view>
+    <view class="newest-title" hidden='{{loadingComplete}}'>
+      <text>没有更多数据...</text>
+    </view>
+  </scroll-view>
+  <view class="body-view">
+    <loading hidden="{{loading}}">
+      加载中...
+    </loading>
   </view>
+
 </view>

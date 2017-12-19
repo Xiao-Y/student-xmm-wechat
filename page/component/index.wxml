@@ -1,3 +1,4 @@
+<import src="../templates/product_template.wxml" />
 <view class="main">
   <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
@@ -34,13 +35,14 @@
     </view>
     <view class="newest-box">
       <view class="newest-list" data-index="{{item.id}}" wx:for="{{NewList}}" wx:for-item="item" wx:key="{{item.id}}" bindtap="getCommodityById">
-        <image src="{{item.img}}"></image>
+        <template is="product_item_cell" data="{{...item}}" />
+        <!-- <image src="{{item.img}}"></image>
         <view class="newest-text">
           <text>{{item.commodityName}}</text>
         </view>
         <view class="newest-text">
           <text>¥{{item.unitPrice}}/{{item.spec}}</text>
-        </view>
+        </view> -->
       </view>
     </view>
     <view class="newest-title">
@@ -48,13 +50,14 @@
     </view>
     <view class="newest-box">
       <view class="newest-list" data-index="{{item.id}}" wx:for="{{HotList}}" wx:for-item="item" wx:key="{{item.id}}" bindtap="getCommodityById">
-        <image src="{{item.img}}"></image>
+        <template is="product_item_cell" data="{{...item}}" />
+        <!-- <image src="{{item.img}}"></image>
         <view class="newest-text">
           <text>{{item.commodityName}}</text>
         </view>
         <view class="newest-text">
           <text>¥{{item.unitPrice}}/{{item.spec}}</text>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>

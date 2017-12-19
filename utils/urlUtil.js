@@ -28,7 +28,10 @@ var SERVER = {
   //更新购物车中的商品数量
   cart_updateShoppingCartComNum: base_server + "mb/cart/updateShoppingCartComNum",
   //删除购物车信息
-  cart_deleteShoppingCart: base_server + "mb/cart/deleteShoppingCart"
+  cart_deleteShoppingCart: base_server + "mb/cart/deleteShoppingCart",
+  
+  //商品列表
+  commodity_shop: base_server + "mb/commodity/shop"
 }
 
 module.exports = {
