@@ -1,24 +1,57 @@
 <view class="main">
-    <navigator url="../address/address">
-        <view wx:if="{{hasAddress}}" class="orders-address">
-            <text class="orders-address-name">收货人: {{address.name}}</text>
-            <text class="orders-address-phone">电话: {{address.phone}}</text>
-            <view class="orders-address-detail">{{address.detail}}</view>
-        </view>
-        <view wx:else class="orders-no-address">添加收货地址</view>
-    </navigator>
+  <!--导航条-->
+  <view class="order-box">
+    <view class="order-box-item order-box-item-{{currentTab==index ? 'active' : ''}}" wx:for="{{navbar}}" data-idx="{{index}}" wx:key="unique" bindtap="navbarTap">
+      <image class='order-box-item-image' src='../../../image/{{item.img}}'></image>
+      <view class='order-box-item-text' bindtap='pendingPayment'>{{item.title}}</view>
+    </view>
+  </view>
 
+  <!--首页-->
+  <view hidden="{{currentTab!=0}}">
     <view class="orders-box">
-        <view wx:for="{{orders}}" wx:key="index" class="orders-list">
-            <image class="orders-thumb" src="{{item.image}}"></image>
-            <view class="orders-pro-name">{{item.title}}</view>
-            <view class="orders-pro-price">￥{{item.price}}</view>
-            <view class="orders-count-num">×{{item.num}}</view>
+      <view class="orders-list" wx:for="{{orders}}" wx:key="index">
+        <view class="orders-number">订单编号：{{item.number}}
+          <text bindtap='orderDetail' data-idx='{{item.number}}'>订单详细</text>
         </view>
+        <view class="orders-detail">
+          <image src="../../../image/u_order_all.png"></image>
+          <view class="">{{item.name}}</view>
+          <view class="">￥{{item.unitPrice}} X {{item.count}}</view>
+        </view>
+        <view class="orders-footer">
+          <text>实付：￥{{item.money}}</text>
+          <text class="orders-detail-status">{{item.status}}</text>
+        </view>
+        <view class="orders-footer">
+          <button size="mini" class="orders-btn" bindtap="payOrders">去付款</button>
+          <button size="mini" class="orders-btn" bindtap="payOrders">取消订单</button>
+        </view>
+      </view>
     </view>
+  </view>
 
-    <view class="orders-footer">
-        <view class="orders-footer-total">付款合计：￥{{total}}</view>
-        <view class="orders-footer-btn" bindtap="toPay">去付款</view>
+  <!--搜索-->
+  <view hidden="{{currentTab!=1}}">
+    tab_02
+  </view>
+
+  <!--我-->
+  <view hidden="{{currentTab!=2}}">
+    tab_03
+  </view>
+  <!-- <view class="order-box">
+    <view class='order-box-item'>
+      <image class='order-box-item-image' src='../../../image/u_wit_pay.png'></image>
+      <view class='order-box-item-text' bindtap='pendingPayment'>待付款</view>
     </view>
+    <view class='order-box-item'>
+      <image class='order-box-item-image' src='../../../image/u_wit_fahuo.png'></image>
+      <view class='order-box-item-text' bindtap="pendingDelivery">待发货</view>
+    </view>
+    <view class='order-box-item'>
+      <image class='order-box-item-image' src='../../../image/u_wit_shouhu.png'></image>
+      <view class='order-box-item-text' bindtap='pendingTakeDelivery'>待收货</view>
+    </view>
+  </view> -->
 </view>

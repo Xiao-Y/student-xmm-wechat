@@ -6,15 +6,15 @@
   </view>
   <view class="order-box">
     <image class='order-box-item-image' src='../../../image/u_wit_pay.png'></image>
-    <view class='order-box-item'>待付款</view>
+    <view class='order-box-item' bindtap='pendingPayment'>待付款</view>
     <image class='order-box-item-image' src='../../../image/u_wit_fahuo.png'></image>
-    <view class='order-box-item'>待发货</view>
+    <view class='order-box-item'bindtap="pendingDelivery">待发货</view>
     <image class='order-box-item-image' src='../../../image/u_wit_shouhu.png'></image>
-    <view class='order-box-item'>待收货</view>
+    <view class='order-box-item' bindtap='pendingTakeDelivery'>待收货</view>
   </view>
   <view class="address-box">
     <view class="address-manage">
-      <view class='address-box-item'>
+      <view class='address-box-item' bindtap='myOrders'>
         <image class='address-box-item-image' src='../../../image/u_order.png'></image>
         <view class='address-box-item-text'>我的订单</view>
       </view>

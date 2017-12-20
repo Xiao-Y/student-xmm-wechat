@@ -1,47 +1,48 @@
 // page/component/orders/orders.js
+const URL = require("../../../utils/urlUtil");
+const httpUtil = require("../../../utils/httpUtil");
+const tipsUtil = require("../../../utils/tipsUtil");
+
+var getOrders = function (that, currentTab) {//根据状态获取订单
+  var orders = [
+    { number: "123123123123", name: "uojoeo", count: "6", status: "待付款", money: "23.56", unitPrice: 15 },
+    { number: "123123123123", name: "驱蚊器驱蚊器器欠妥仍然蚊器仍驱蚊器欠妥仍然", count: "6", status: "待付款", money: "23.56" },
+    { number: "123123123123", name: "uojoeo", count: "6", status: "待付款", money: "23.56", unitPrice: 15 },
+    { number: "123123123123", name: "uojoeo", count: "6", status: "待付款", money: "23.56", unitPrice: 15 },
+    { number: "123123123123", name: "uojoeo", count: "6", status: "待付款", money: "23.56", unitPrice: 15 },
+    { number: "123123123123", name: "uojoeo", count: "6", status: "待付款", money: "23.56", unitPrice: 15 }];
+
+  that.setData({
+    currentTab: currentTab,
+    orders: orders
+  })
+}
+
 Page({
-  data:{
-    address:{},
-    hasAddress: false,
-    total:0,
-    orders:[
-        {id:1,title:'新鲜芹菜 半斤',image:'/image/s5.png',num:4,price:0.01},
-        {id:2,title:'素米 500g',image:'/image/s6.png',num:1,price:0.03}
-      ]
+  data: {
+    navbar: [{ title: '全部', img: 'u_order_all.png' },
+    { title: '待付款', img: 'u_wit_pay.png' },
+    { title: '待发货', img: 'u_wit_fahuo.png' },
+    { title: '待收货', img: 'u_wit_fahuo.png' }],
+    currentTab: 0,
+    orders: []
   },
-
-  onReady() {
-    this.getTotalPrice();
+  navbarTap: function (e) {//点击导航时
+    var currentTab = e.currentTarget.dataset.idx;
+    getOrders(this, currentTab);
   },
-  
-  onShow:function(){
-    const self = this;
-    wx.getStorage({
-      key:'address',
-      success(res) {
-        self.setData({
-          address: res.data,
-          hasAddress: true
-        })
-      }
+  onLoad: function (options) {//页面加载
+    var currentTab = options.currentTab;
+    getOrders(this, currentTab);
+  },
+  orderDetail: function (e) {
+    var orderId = e.currentTarget.dataset.idx
+    console.info(orderId);
+    wx.navigateTo({
+      url: 'ordersDetails?orderId=' + orderId,
     })
   },
-
-  /**
-   * 计算总价
-   */
-  getTotalPrice() {
-    let orders = this.data.orders;
-    let total = 0;
-    for(let i = 0; i < orders.length; i++) {
-      total += orders[i].num * orders[i].price;
-    }
-    this.setData({
-      total: total
-    })
-  },
-
-  toPay() {
+  toPay() {//支付
     wx.showModal({
       title: '提示',
       content: '本系统只做演示，支付系统已屏蔽',
