@@ -27,22 +27,27 @@ Page({
   },
   myOrders() {//我的订单
     wx.navigateTo({
-      url: '../orders/orders?currentTab=0',
+      url: '../orders/orders?currentTab=all',
     });
   },
   pendingPayment() {//待付款
     wx.navigateTo({
-      url: '../orders/orders?currentTab=1',
+      url: '../orders/orders?currentTab=UNPAID',
     });
   },
   pendingDelivery() {//待发货
     wx.navigateTo({
-      url: '../orders/orders?currentTab=2',
+      url: '../orders/orders?currentTab=BUSINESS_CONFIRMATION',
     });
   },
   pendingTakeDelivery() {//待收货
     wx.navigateTo({
-      url: '../orders/orders?currentTab=3',
+      url: '../orders/orders?currentTab=CONSIGNMENT',
+    });
+  },
+  addrssMg(){//地址管理
+    wx.navigateTo({
+      url: '../address/address',
     });
   },
   /**

@@ -158,5 +158,31 @@ Page({
       carts: carts
     });
     getTotalPrice(this);
+  },
+  saveOrder(){//提交订单
+    var param = this.data.carts.filter(this.selectedFilter);
+    console.info(param);
+    console.info(JSON.stringify(param));
+    wx.navigateTo({
+      url: '../orders/ordersDetails?formPage=cart&param=' + JSON.stringify(param),
+    })
+    //保存订单信息
+    // httpUtil.http_postJson(URL.SERVER.cart_saveOrderForm, param, function (res) {
+    //   if (!res.data.error || res.data.length > 0) {
+    //     var json = res.data;
+    //     if(json.success){
+    //       //订单号
+    //       var orderFormId = json.data.orderFormId;
+    //       wx.navigateTo({
+    //         url: '../orders/ordersDetails?orderFormId=' + orderFormId,
+    //       })
+    //     }else{
+    //       tipsUtil.showConfirm(json.message);
+    //     }
+    //   }
+    // });
+  },
+  selectedFilter(element, index, array){//过滤所有选种的商品
+    return (element.selected);
   }
 })

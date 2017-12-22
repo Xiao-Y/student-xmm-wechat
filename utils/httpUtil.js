@@ -2,17 +2,28 @@ const md5 = require("md5");
 const tipUtil = require("tipsUtil");
 const util = require("util");
 var app = getApp();
-
+/**
+ * get获取
+ */
 function http_get(url, data, cb) {
   http_request(url, "GET", data, cb);
 }
-
+/**
+ * post提交
+ */
 function http_post(url, data, cb) {
   http_request(url, "POST", data, cb);
+}
+/**
+ * post的json形式提交
+ */
+function http_postJson(url, data, cb) {
+  http_request(url, "JSON", data, cb);
 }
 
 function http_request(url, method, data, cb) {
   var header = app.globalData.header;
+  var dataType = '';
   var param = new Object();
 
   if (data != null) {
@@ -22,7 +33,12 @@ function http_request(url, method, data, cb) {
   param.intervalTime = util.getNowFormatDate();
   param.rd_session = app.getSession();
   param.token = app.getToken();
-
+  //json格式提交时
+  if (method == "JSON") {
+    header = { "Content-Type": "application/json", "Cookie": "" };
+    header.Cookie = 'JSESSIONID=' + app.globalData.rd_session.sessionId;
+    method = "POST";
+  }
   wx.request({
     url: url,
     data: param,
@@ -163,6 +179,7 @@ module.exports = {
   wx_pay: wx_pay,
   http_get: http_get,
   http_post: http_post,
+  http_postJson: http_postJson,
   getOrderStatusStr: getOrderStatusStr,
   openOnlineDoc: openOnlineDoc,
   randomChar: randomChar

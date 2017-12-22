@@ -29,9 +29,21 @@ var SERVER = {
   cart_updateShoppingCartComNum: base_server + "mb/cart/updateShoppingCartComNum",
   //删除购物车信息
   cart_deleteShoppingCart: base_server + "mb/cart/deleteShoppingCart",
-  
+  //保存订单信息
+  cart_saveOrderForm: base_server + "mb/cart/saveOrderForm",
+
   //商品列表
-  commodity_shop: base_server + "mb/commodity/shop"
+  commodity_shop: base_server + "mb/commodity/shop",
+
+  //获取收货地址
+  address_getAddress: base_server + "mb/address/address",
+  //删除收货地址
+  address_delAddress: base_server + "mb/address/deleteAddress",
+  //添加/保存收货地址
+  address_saveAddress: base_server + "mb/address/saveAddress",
+
+  //查询订单列表
+  order_queryOrderFormList: base_server + "mb/order/queryOrderFormList"
 }
 
 module.exports = {

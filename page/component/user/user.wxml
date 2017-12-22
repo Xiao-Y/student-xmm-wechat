@@ -20,7 +20,7 @@
       </view>
     </view>
     <view class="address-manage">
-      <view class='address-box-item'>
+      <view class='address-box-item' bindtap='addrssMg'>
         <image class='address-box-item-image' src='../../../image/u_address.png'></image>
         <view class='address-box-item-text'>地址管理</view>
       </view>

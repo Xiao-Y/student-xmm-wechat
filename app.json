@@ -5,6 +5,7 @@
     "page/component/cart/cart",
     "page/component/user/user",
     "page/component/address/address",
+    "page/component/address/addressEdit",
     "page/component/orders/orders",
     "page/component/orders/ordersDetails",
     "page/component/details/details",

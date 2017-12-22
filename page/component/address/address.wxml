@@ -1,10 +1,13 @@
 <view class="main">
-    <view class="form-box">
-        <form bindsubmit="formSubmit">
-            <input value="{{address.name}}" placeholder="姓名" bindinput="bindName"/>
-            <input type="number" value="{{address.phone}}" placeholder="电话号码" bindinput="bindPhone" />
-            <input value="{{address.detail}}" placeholder="详细地址" bindinput="bindDetail"/>
-            <button form-type="submit">保存</button>
-        </form>
+  <text class='top-text' wx:if="{{!hasAddress}}">小提示: 最多添加5个收货地址!</text>
+  <view wx:if="{{hasAddress}}" bindtap='addAddress' class="orders-no-address">添加收货地址</view>
+  <view class='address-box' wx:for="{{address}}" wx:key="index">
+    <view class="orders-address" data-index='{{index}}' bindtap='editAddress'>
+      <text class="orders-address-name">收货人: {{item.consignee}}</text>
+      <text class="orders-address-phone">电话: {{item.consigneePhone}}</text>
+      <view class="orders-address-detail">地址：{{item.consigneeAddress}}</view>
     </view>
+    <view class='address-op' data-index='{{index}}' bindtap='delAddress'>X</view>
+  </view>
+
 </view>

@@ -1,27 +1,23 @@
 <view class="main">
   <!--导航条-->
   <view class="order-box">
-    <view class="order-box-item order-box-item-{{currentTab==index ? 'active' : ''}}" wx:for="{{navbar}}" data-idx="{{index}}" wx:key="unique" bindtap="navbarTap">
+    <view class="order-box-item order-box-item-{{currentTab==status ? 'active' : ''}}" wx:for="{{navbar}}" data-idx="{{index}}" wx:key="unique" bindtap="navbarTap">
       <image class='order-box-item-image' src='../../../image/{{item.img}}'></image>
       <view class='order-box-item-text' bindtap='pendingPayment'>{{item.title}}</view>
     </view>
   </view>
 
   <!--首页-->
-  <view hidden="{{currentTab!=0}}">
+  <view hidden="{{currentTab!='all'}}">
     <view class="orders-box">
       <view class="orders-list" wx:for="{{orders}}" wx:key="index">
-        <view class="orders-number">订单编号：{{item.number}}
-          <text bindtap='orderDetail' data-idx='{{item.number}}'>订单详细</text>
+        <view class="orders-number">订单编号：{{item.commodityId}}
+          <text bindtap='orderDetail' data-idx='{{index}}'>订单详细</text>
         </view>
-        <view class="orders-detail">
+        <view class="orders-detail" wx:for="{{orders.orderFormDetailDtos}}" wx:key="index" wx:for-item="detail">
           <image src="../../../image/u_order_all.png"></image>
-          <view class="">{{item.name}}</view>
-          <view class="">￥{{item.unitPrice}} X {{item.count}}</view>
-        </view>
-        <view class="orders-footer">
-          <text>实付：￥{{item.money}}</text>
-          <text class="orders-detail-status">{{item.status}}</text>
+          <view class="">{{detail.commodityName}}</view>
+          <view class="">￥{{detail.unitPrice}} X {{detail.commodityNum}}</view>
         </view>
         <view class="orders-footer">
           <button size="mini" class="orders-btn" bindtap="payOrders">去付款</button>
