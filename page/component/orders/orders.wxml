@@ -1,7 +1,7 @@
 <view class="main">
   <!--导航条-->
   <view class="order-box">
-    <view class="order-box-item order-box-item-{{currentTab==status ? 'active' : ''}}" wx:for="{{navbar}}" data-idx="{{index}}" wx:key="unique" bindtap="navbarTap">
+    <view class="order-box-item order-box-item-{{currentTab==status ? 'active' : ''}}" wx:for="{{navbar}}" data-idx="{{item.status}}" wx:key="unique" bindtap="navbarTap">
       <image class='order-box-item-image' src='../../../image/{{item.img}}'></image>
       <view class='order-box-item-text' bindtap='pendingPayment'>{{item.title}}</view>
     </view>
@@ -11,29 +11,35 @@
   <view hidden="{{currentTab!='all'}}">
     <view class="orders-box">
       <view class="orders-list" wx:for="{{orders}}" wx:key="index">
-        <view class="orders-number">订单编号：{{item.commodityId}}
+        <view class="orders-number">订单编号：{{item.id}}
           <text bindtap='orderDetail' data-idx='{{index}}'>订单详细</text>
         </view>
-        <view class="orders-detail" wx:for="{{orders.orderFormDetailDtos}}" wx:key="index" wx:for-item="detail">
-          <image src="../../../image/u_order_all.png"></image>
+        <view class="orders-detail" wx:for="{{item.orderFormDetailDtos}}" wx:key="index" wx:for-item="detail">
+          <image src="{{detail.commodityImg}}"></image>
           <view class="">{{detail.commodityName}}</view>
           <view class="">￥{{detail.unitPrice}} X {{detail.commodityNum}}</view>
         </view>
         <view class="orders-footer">
-          <button size="mini" class="orders-btn" bindtap="payOrders">去付款</button>
-          <button size="mini" class="orders-btn" bindtap="payOrders">取消订单</button>
+          <view class="orders-detail-status">{{item.statusName}}</view>
+          <black wx:for="{{item.optionButton}}" wx:key="index" wx:for-item="option" wx:key="index">
+          <button size="mini" class="orders-btn" data-index='{{index}}' bindtap="optionButton">{{option}}</button>
+          </black>
         </view>
       </view>
     </view>
   </view>
 
-  <!--搜索-->
-  <view hidden="{{currentTab!=1}}">
+  <!--待付款-->
+  <view hidden="{{currentTab!='UNPAID'}}">
     tab_02
   </view>
 
-  <!--我-->
-  <view hidden="{{currentTab!=2}}">
+  <!--待发货-->
+  <view hidden="{{currentTab!='BUSINESS_CONFIRMATION'}}">
+    tab_03
+  </view>
+   <!--待收货-->
+  <view hidden="{{currentTab!='CONSIGNMENT'}}">
     tab_03
   </view>
   <!-- <view class="order-box">

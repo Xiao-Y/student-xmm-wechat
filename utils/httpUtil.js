@@ -72,42 +72,6 @@ function http_request(url, method, data, cb) {
   });
 };
 
-function pre_wx_pay(orderId, cb) {
-  var url = 'https://www.juxianjia.net/itman/index.php/ws/pay/bookOrder';
-  //var url = 'https://www.jxj.net/itman/index.php/ws/pay/bookOrder';
-  var param = { 'orderId': orderId };
-  http_get(url, param, cb);
-}
-
-function wx_pay(param, success, fail) {
-  // 发起支付
-  var data = param.data.data;
-  var appId = data.appid;
-  var timeStamp = (Date.parse(new Date()) / 1000).toString();
-  var pkg = 'prepay_id=' + data.prepay_id;
-  var nonceStr = data.nonce_str;
-  var paySign = md5.hex_md5('appId=' + appId + '&nonceStr=' + nonceStr + '&package=' + pkg + '&signType=MD5&timeStamp=' + timeStamp + "&key=763FE580FA5B95EF36582D46B8B58CBC").toUpperCase();
-  wx.requestPayment({
-    'timeStamp': timeStamp,
-    'nonceStr': nonceStr,
-    'package': pkg,
-    'signType': 'MD5',
-    'paySign': paySign,
-    'success': function (res) {
-      console.log('success: ' + JSON.stringify(res.data));
-      typeof success == "function" && success(res)
-    },
-    fail: function (res) {
-      console.log('fail: ' + JSON.stringify(res.data));
-      typeof fail == "function" && fail(res)
-    }
-  });
-}
-
-function user_login() {
-
-}
-
 function openOnlineDoc(url) {
   wx.showLoading({
     title: '打开中...',
@@ -175,8 +139,6 @@ var orderStatusStr = {
   0: '未支付',
 }
 module.exports = {
-  pre_wx_pay: pre_wx_pay,
-  wx_pay: wx_pay,
   http_get: http_get,
   http_post: http_post,
   http_postJson: http_postJson,

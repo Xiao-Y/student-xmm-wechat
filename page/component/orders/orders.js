@@ -33,10 +33,14 @@ Page({
     var currentTab = options.currentTab;
     getOrders(this, currentTab);
   },
+  onPullDownRefresh(){
+    var currentTab = this.data.currentTab;
+    getOrders(this, currentTab);
+  },
   orderDetail: function (e) {
     var index = e.currentTarget.dataset.idx
-    console.info(index);
     var param = JSON.stringify(this.data.orders[index]);
+    console.info(param);
     wx.navigateTo({
       url: 'ordersDetails?formPage=orders&param=' + param,
     })
@@ -51,5 +55,8 @@ Page({
         })
       }
     })
+  },
+  optionButton(){
+    
   }
 })

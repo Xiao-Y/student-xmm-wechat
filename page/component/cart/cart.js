@@ -161,8 +161,8 @@ Page({
   },
   saveOrder(){//提交订单
     var param = this.data.carts.filter(this.selectedFilter);
-    console.info(param);
-    console.info(JSON.stringify(param));
+    //console.info(param);
+    //console.info(JSON.stringify(param));
     wx.navigateTo({
       url: '../orders/ordersDetails?formPage=cart&param=' + JSON.stringify(param),
     })

@@ -1,0 +1,62 @@
+/* page/component/address/addressView.wxss */
+
+.address-box .address-pro-select {
+  left: 20rpx;
+  top: 90rpx;
+  width: 45rpx;
+  height: 45rpx;
+}
+
+.orders-address {
+  position: relative;
+  padding: 20rpx 50rpx 20rpx 35rpx;
+  font-size: 14px;
+  line-height: 20px;
+  /* border-bottom: 20rpx solid #ededed;
+  color: #adadad; */
+}
+
+.orders-address-name {
+  display: inline-block;
+  width: 300rpx;
+}
+
+.orders-no-address {
+  position: relative;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #adadad;
+  border-bottom: 20rpx solid #ededed;
+  text-align: center;
+}
+
+.orders-no-address::after {
+  position: absolute;
+  right: 30rpx;
+  top: 34rpx;
+  content: '';
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 4rpx solid #7f7f7f;
+  border-right: 4rpx solid #7f7f7f;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.address-box {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 20rpx solid #ededed;
+  margin: 5rpx;
+}
+
+.orders-btn {
+  float: right;
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 6rpx;
+  background: #b42f2d;
+  color: #fff;
+  margin: 10rpx 30rpx;
+}

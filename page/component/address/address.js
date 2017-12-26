@@ -53,7 +53,7 @@ Page({
           if (json.success) {
             addressOdj.splice(index, 1);
             var hasAddress = true;
-            if (address && address.length >= 4) {
+            if (address && address.length >= 5) {
               hasAddress = false;
             }
             that.setData({
@@ -65,13 +65,9 @@ Page({
               key: 'address',
               success: function (res2) {
                 if (res2.data.id == addressId) {
-                  that.setData({
-                    address: {
-                      id: '',
-                      consignee: '',
-                      consigneePhone: '',
-                      consigneeAddress: ''
-                    }
+                  wx.setStorage({
+                    key: 'address',
+                    data: {}
                   });
                 }
               }

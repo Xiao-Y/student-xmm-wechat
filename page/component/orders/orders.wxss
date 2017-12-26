@@ -103,7 +103,7 @@
   margin: 0 10rpx;
 }
 .orders-footer .orders-detail-status{
-  float: right;
+  float: left;
   right: 20rpx;
   top: 35rpx;
   color: #b42f2d;

@@ -1,0 +1,13 @@
+<!--page/component/address/addressView.wxml-->
+<view class="main">
+  <view class='address-box' wx:for="{{addresses}}" wx:key="index">
+    <icon wx:if="{{item.selected}}" type="success" color="red" data-index="{{index}}" class="address-pro-select" bindtap="selectList" />
+        <icon wx:else type="circle" class="address-pro-select" data-index="{{index}}" bindtap="selectList" />
+    <view class="orders-address" data-index='{{index}}'>
+      <text class="orders-address-name">收货人: {{item.consignee}}</text>
+      <text class="orders-address-phone">电话: {{item.consigneePhone}}</text>
+      <view class="orders-address-detail">地址：{{item.consigneeAddress}}</view>
+    </view>
+  </view>
+  <button size="mini" class="orders-btn" bindtap="changeAddress">确定</button>
+</view>

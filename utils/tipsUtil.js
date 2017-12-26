@@ -42,10 +42,22 @@ function showConfirmTitle(title, text, confirm) {
   wx.showModal({
     title: title,
     content: text,
-
     success: function (res) {
       if (res.confirm) {
         typeof confirm == "function" && confirm()
+      }
+    }
+  })
+}
+function showConfirmAndCancelTitle(title, text, confirm, cancel) {
+  wx.showModal({
+    title: title,
+    content: text,
+    success: function (res) {
+      if (res.confirm) {
+        typeof confirm == "function" && confirm()
+      } else if (res.cancel) {
+        typeof cancel == "function" && cancel()
       }
     }
   })
@@ -64,4 +76,5 @@ module.exports = {
   showConfirm: showConfirm,
   showConfirmCancel: showConfirmCancel,
   showConfirmTitle: showConfirmTitle,
+  showConfirmAndCancelTitle: showConfirmAndCancelTitle,
 }

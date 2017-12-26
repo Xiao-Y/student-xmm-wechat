@@ -43,7 +43,13 @@ var SERVER = {
   address_saveAddress: base_server + "mb/address/saveAddress",
 
   //查询订单列表
-  order_queryOrderFormList: base_server + "mb/order/queryOrderFormList"
+  order_queryOrderFormList: base_server + "mb/order/queryOrderFormList",
+  //提交订单
+  order_saveOrderForm: base_server + "mb/order/saveOrderForm",
+  //更新订单状态
+  order_updateOrderForm: base_server + "mb/order/updateOrderForm",
+  //微信支付
+  pay_weChatPay: base_server + "mb/weChatPay/weChatPay"
 }
 
 module.exports = {
