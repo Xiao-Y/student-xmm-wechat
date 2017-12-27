@@ -91,12 +91,15 @@ Page({
     });
   },
   openCart() {//打开购物车
-    wx.switchTab({
-      url: "../cart/cart",
-      complete: function (res) {
-        console.log(res)
-      }
-    });
+    // wx.switchTab({
+    //   url: "../cart/cart",
+    //   complete: function (res) {
+    //     console.log(res)
+    //   }
+    // });
+    wx.navigateTo({
+      url: '../cart/cart',
+    })
   },
   bindTap(e) {
     const index = parseInt(e.currentTarget.dataset.index);

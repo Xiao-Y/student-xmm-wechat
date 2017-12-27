@@ -19,7 +19,7 @@
 
   <view class="orders-footer">
     <view class="orders-footer-total">付款合计：￥{{total}}</view>
-    <view wx:if="{{orderStatus == '0' || orderStatus == '2' || orderStatus == '4'}}" 
+    <view wx:if="{{orderStatus == '0' || orderStatus == '2' || orderStatus == '6'}}" 
     class="orders-footer-btn" data-addressid='{{address.id}}' bindtap="toPay">去付款</view>
   </view>
 </view>

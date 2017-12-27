@@ -106,7 +106,10 @@ Page({
     totalPrice: 0,           // 总价，初始为0
     selectAllStatus: true    // 全选状态，默认全选
   },
-  onLoad: function (options) {
+  // onLoad: function (options) {
+  //   myShoppingCart(this);
+  // },
+  onShow:function(){
     myShoppingCart(this);
   },
   onPullDownRefresh: function () {

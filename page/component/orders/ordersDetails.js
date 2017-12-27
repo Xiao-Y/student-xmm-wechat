@@ -74,6 +74,7 @@ var fromOrdersToOrdersDetails = function (self, option) {
     formPage: option.formPage,
     addressClass: 'orders-address-order'
   });
+  console.info(param.status);
 }
 
 // /**

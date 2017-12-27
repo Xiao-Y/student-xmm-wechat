@@ -1,0 +1,23 @@
+<template name="order_item_cell">
+  <view class="orders-box">
+    <view class="orders-list" wx:for="{{orders}}" wx:key="index" wx:for-item="item">
+      <view class="orders-number" bindtap='orderDetail' data-idx='{{index}}'>订单编号：{{item.id}}
+        <text>订单详细</text>
+      </view>
+      <view class="orders-detail" wx:for="{{item.orderFormDetailDtos}}" wx:key="index" wx:for-item="detail">
+        <image src="{{detail.commodityImg}}"></image>
+        <view class="">{{detail.commodityName}}</view>
+        <view class="">￥{{detail.unitPrice}} X {{detail.commodityNum}}</view>
+      </view>
+      <view class="orders-footer">
+        <view class="orders-detail-status">{{item.statusName}}</view>
+        <black wx:for="{{item.optionButton}}" wx:key="index" wx:for-item="option" wx:key="index">
+          <button size="mini" class="orders-btn" data-id='{{item.id}}' data-status='{{index}}' bindtap="optionButton">{{option}}</button>
+        </black>
+      </view>
+    </view>
+  </view>
+  <view class="newest-title" hidden='{{noMore}}'>
+      <text>没有更多数据...</text>
+    </view>
+</template>

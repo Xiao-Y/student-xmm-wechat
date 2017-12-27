@@ -1,59 +1,26 @@
+<import src="../../templates/order_template.wxml" />
 <view class="main">
   <!--导航条-->
   <view class="order-box">
-    <view class="order-box-item order-box-item-{{currentTab==status ? 'active' : ''}}" wx:for="{{navbar}}" data-idx="{{item.status}}" wx:key="unique" bindtap="navbarTap">
+    <view class="order-box-item order-box-item-{{currentTab == item.status ? 'active' : ''}}" wx:for="{{navbar}}" data-idx="{{item.status}}" wx:key="unique" bindtap="navbarTap">
       <image class='order-box-item-image' src='../../../image/{{item.img}}'></image>
-      <view class='order-box-item-text' bindtap='pendingPayment'>{{item.title}}</view>
+      <view class='order-box-item-text'>{{item.title}}</view>
     </view>
   </view>
-
-  <!--首页-->
+  <!--全部-->
   <view hidden="{{currentTab!='all'}}">
-    <view class="orders-box">
-      <view class="orders-list" wx:for="{{orders}}" wx:key="index">
-        <view class="orders-number">订单编号：{{item.id}}
-          <text bindtap='orderDetail' data-idx='{{index}}'>订单详细</text>
-        </view>
-        <view class="orders-detail" wx:for="{{item.orderFormDetailDtos}}" wx:key="index" wx:for-item="detail">
-          <image src="{{detail.commodityImg}}"></image>
-          <view class="">{{detail.commodityName}}</view>
-          <view class="">￥{{detail.unitPrice}} X {{detail.commodityNum}}</view>
-        </view>
-        <view class="orders-footer">
-          <view class="orders-detail-status">{{item.statusName}}</view>
-          <black wx:for="{{item.optionButton}}" wx:key="index" wx:for-item="option" wx:key="index">
-            <button size="mini" class="orders-btn" data-id='{{item.id}}' data-status='{{index}}' bindtap="optionButton">{{option}}</button>
-          </black>
-        </view>
-      </view>
-    </view>
+    <template is="order_item_cell" data="{{orders,noMore}}" />
   </view>
-
   <!--待付款-->
   <view hidden="{{currentTab!='UNPAID'}}">
-    tab_02
+    <template is="order_item_cell" data="{{orders,noMore}}" />
   </view>
-
   <!--待发货-->
   <view hidden="{{currentTab!='BUSINESS_CONFIRMATION'}}">
-    tab_03
+    <template is="order_item_cell" data="{{orders,noMore}}" />
   </view>
   <!--待收货-->
   <view hidden="{{currentTab!='CONSIGNMENT'}}">
-    tab_03
+    <template is="order_item_cell" data="{{orders,noMore}}" />
   </view>
-  <!-- <view class="order-box">
-    <view class='order-box-item'>
-      <image class='order-box-item-image' src='../../../image/u_wit_pay.png'></image>
-      <view class='order-box-item-text' bindtap='pendingPayment'>待付款</view>
-    </view>
-    <view class='order-box-item'>
-      <image class='order-box-item-image' src='../../../image/u_wit_fahuo.png'></image>
-      <view class='order-box-item-text' bindtap="pendingDelivery">待发货</view>
-    </view>
-    <view class='order-box-item'>
-      <image class='order-box-item-image' src='../../../image/u_wit_shouhu.png'></image>
-      <view class='order-box-item-text' bindtap='pendingTakeDelivery'>待收货</view>
-    </view>
-  </view> -->
 </view>

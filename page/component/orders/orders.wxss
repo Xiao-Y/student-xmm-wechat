@@ -98,21 +98,30 @@
   height: 60rpx;
   line-height: 60rpx;
   border-radius: 6rpx;
-  background: #b42f2d;
+  background: #f00;
   color: #fff;
   margin: 0 10rpx;
 }
-.orders-footer .orders-detail-status{
+
+.orders-footer .orders-detail-status {
   float: left;
   right: 20rpx;
   top: 35rpx;
-  color: #b42f2d;
+  color: #f00;
 }
 
-.orders-number text{
+.orders-number text {
   float: right;
   right: 20rpx;
   top: 35rpx;
-  color: #0000ff;
+  color: #00f;
   margin: 0 30rpx;
+}
+
+.newest-title {
+  width: 100%;
+  padding: 30rpx 0;
+  height: 40rpx;
+  color: #ab956d;
+  text-align: center;
 }

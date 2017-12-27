@@ -2,7 +2,6 @@
   <view class="header">
     <image src="{{thumb}}" class="thumb"></image>
     <text class="nickname">{{nickname}}</text>
-    <text class="about">关于我们</text>
   </view>
   <view class="order-box">
     <image class='order-box-item-image' src='../../../image/u_wit_pay.png'></image>

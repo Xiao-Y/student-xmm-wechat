@@ -11,9 +11,15 @@ var getOrders = function (that, currentTab) {//根据状态获取订单
   var url = URL.SERVER.order_queryOrderFormList + "?status=" + currentTab;
   httpUtil.http_get(url, null, function (res) {
     if (!res.data.error || res.data.length > 0) {
+      var noMore = false;
+      var orders = res.data.list;
+      if (orders && orders.length > 0) {
+        noMore = true;
+      }
       that.setData({
         currentTab: currentTab,
-        orders: res.data.list
+        orders: res.data.list,
+        noMore: noMore
       });
     }
   });
@@ -27,6 +33,7 @@ Page({
       { title: '待发货', img: 'u_wit_fahuo.png', status: 'BUSINESS_CONFIRMATION' },
       { title: '待收货', img: 'u_wit_fahuo.png', status: 'CONSIGNMENT' }],
     currentTab: 'all',
+    noMore: true,
     orders: []
   },
   navbarTap: function (e) {//点击导航时
@@ -59,7 +66,7 @@ Page({
       }
     })
   },
-  optionButton(e) {
+  optionButton(e) {//订单操作
     var self = this;
     var orderFormId = e.currentTarget.dataset.id;
     var status = e.currentTarget.dataset.status;
