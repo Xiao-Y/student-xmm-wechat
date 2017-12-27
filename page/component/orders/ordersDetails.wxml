@@ -1,5 +1,5 @@
 <view class="main">
-  <view wx:if="{{hasAddress}}" class="orders-address" bindtap='changeAddress'>
+  <view wx:if="{{hasAddress}}" class="{{addressClass}}" bindtap='changeAddress'>
     <text class="orders-address-name">收货人: {{address.consignee}}</text>
     <text class="orders-address-phone">电话: {{address.consigneePhone}}</text>
     <view class="orders-address-detail">{{address.consigneeAddress}}</view>
@@ -19,6 +19,7 @@
 
   <view class="orders-footer">
     <view class="orders-footer-total">付款合计：￥{{total}}</view>
-    <view class="orders-footer-btn" data-addressid='{{address.id}}' bindtap="toPay">去付款</view>
+    <view wx:if="{{orderStatus == '0' || orderStatus == '2' || orderStatus == '4'}}" 
+    class="orders-footer-btn" data-addressid='{{address.id}}' bindtap="toPay">去付款</view>
   </view>
 </view>

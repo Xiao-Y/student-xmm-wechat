@@ -2,7 +2,11 @@
 const URL = require("../../../utils/urlUtil");
 const httpUtil = require("../../../utils/httpUtil");
 const tipsUtil = require("../../../utils/tipsUtil");
+const orderCommon = require("orderCommon");
 
+/**
+ * 获取所有订单
+ */
 var getOrders = function (that, currentTab) {//根据状态获取订单
   var url = URL.SERVER.order_queryOrderFormList + "?status=" + currentTab;
   httpUtil.http_get(url, null, function (res) {
@@ -33,14 +37,13 @@ Page({
     var currentTab = options.currentTab;
     getOrders(this, currentTab);
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     var currentTab = this.data.currentTab;
     getOrders(this, currentTab);
   },
   orderDetail: function (e) {
     var index = e.currentTarget.dataset.idx
     var param = JSON.stringify(this.data.orders[index]);
-    console.info(param);
     wx.navigateTo({
       url: 'ordersDetails?formPage=orders&param=' + param,
     })
@@ -56,7 +59,27 @@ Page({
       }
     })
   },
-  optionButton(){
-    
+  optionButton(e) {
+    var self = this;
+    var orderFormId = e.currentTarget.dataset.id;
+    var status = e.currentTarget.dataset.status;
+    if (status == 'AGPAID') {//继续支付
+      self.setData({ orderFormId: orderFormId });
+      orderCommon.updateOrderForm(self);
+    } else {//其它修改订单状态操作
+      var url = URL.SERVER.order_updateOrderForm + "?id=" + orderFormId + "&statusCode=" + status;
+      httpUtil.http_post(url, null, function (res) {
+        if (!res.data.error || res.data.length > 0) {
+          tipsUtil.showConfirmCancel(res.data.message, function () {
+            var typeStatus = res.data.type;
+            if (typeStatus == 'success') {
+              wx.redirectTo({
+                url: '../orders/orders?currentTab=' + self.data.currentTab
+              })
+            }
+          });
+        }
+      });
+    }
   }
 })
